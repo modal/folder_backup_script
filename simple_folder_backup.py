@@ -46,4 +46,4 @@ for path_2_copy in paths_2_copy:
     shutil.copy2(zipped_name, path_2_copy)
 
 print "Deleting " + zipped_name
-os.delete(zipped_name)
+os.remove(zipped_name)
