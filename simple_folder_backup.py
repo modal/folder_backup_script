@@ -8,11 +8,12 @@ import shutil
 #zip file is deleted.
 #
 #Configuration Steps
-#1.  Set folder name in the directory you want to s
-#2.  Set the copy
+#1.  Set folder name of directory you want zipped.
+#    This folder must reside in the current directory
+#2.  Set the paths to copy list
 #
 #Prequisites:
-#   7-zip must be installed with path set correctly.
+#   7-zip must be installed with command line path set correctly.
 ######################################################################
 
 #folder to zip up
@@ -37,13 +38,13 @@ zipped_name = folder_name + date_used + ".zip"
 zipstr = "7z a -tzip " + zipped_name + " " + folder_2_zip
 os.system(zipstr)
 
-#copy and move zip file to server or different directory
+#copy zip file to specific directories
 copy_str = "copy " + zipped_name
-
 for path_2_copy in paths_2_copy:
     createPath(path_2_copy)
     print "Copying " + zipped_name + " to " + path_2_copy
     shutil.copy2(zipped_name, path_2_copy)
 
+#delete zip file
 print "Deleting " + zipped_name
 os.remove(zipped_name)
