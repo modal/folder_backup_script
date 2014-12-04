@@ -4,7 +4,7 @@ import shutil
 ######################################################################
 #Description:
 #This script zips a folder in the current directory and copies the
-#zip file to the specified paths.  Once all copying is complete the 
+#zip file to the specified paths.  Once all copying is complete the
 #zip file is deleted.
 #
 #Configuration Steps
@@ -35,7 +35,7 @@ print date_used
 
 #zip up the specified folder
 zipped_name = folder_name + date_used + ".zip"
-zipstr = "7z a -tzip " + zipped_name + " " + folder_2_zip
+zipstr = "7z a -tzip -mx9 " + zipped_name + " " + folder_2_zip
 os.system(zipstr)
 
 #copy zip file to specific directories
