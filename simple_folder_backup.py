@@ -8,13 +8,16 @@ import shutil
 #zip file is deleted.
 #
 #Configuration Steps
-#1.  Set folder name of directory you want zipped.
+#1.  Set the archive type
+#2.  Set folder name of directory t to archive.
 #    This folder must reside in the current directory
-#2.  Set the paths to copy list
+#3.  Set the paths to copy list
 #
 #Prequisites:
 #   7-zip must be installed with command line path set correctly.
 ######################################################################
+
+arc_type_str = "zip"    #zip, 7z, ...
 
 #folder to zip up
 folder_name = "FOLDER_NAME"
@@ -34,17 +37,17 @@ date_used = time.strftime("%Y_%m_%d")
 print date_used
 
 #zip up the specified folder
-zipped_name = folder_name + date_used + ".zip"
-zipstr = "7z a -tzip -mx9 " + zipped_name + " " + folder_2_zip
-os.system(zipstr)
+zip_name = folder_name + date_used + ".zip"
+zip_cmd = "7z a -t" + arc_type_str + " -mx9 " + zip_name + " " + folder_2_zip
+os.system(zip_cmd)
 
 #copy zip file to specific directories
-copy_str = "copy " + zipped_name
+copy_str = "copy " + zip_name
 for path_2_copy in paths_2_copy:
     createPath(path_2_copy)
-    print "Copying " + zipped_name + " to " + path_2_copy
-    shutil.copy2(zipped_name, path_2_copy)
+    print "Copying " + zip_name + " to " + path_2_copy
+    shutil.copy2(zip_name, path_2_copy)
 
 #delete zip file
-print "Deleting " + zipped_name
-os.remove(zipped_name)
+print "Deleting " + zip_name
+os.remove(zip_name)
